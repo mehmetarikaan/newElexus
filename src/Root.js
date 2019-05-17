@@ -3,60 +3,99 @@ import { Router, Scene } from 'react-native-router-flux';
 import Main from './main';
 import Details from './details';
 import Login from './pages/login/login';
-import { createStackNavigator, createAppContainer } from 'react-navigation';
+import { createStackNavigator, createAppContainer, createDrawerNavigator } from 'react-navigation';
 import LoginScreen from './pages/login/login';
 import MainScreen from './main';
 import DetailScreen from './details';
-export default class Root extends Component {
-    render() {
-        return(
-            <AppContainer />
-            // <Router>
-            //     <Scene
-            //         key='Root'hideNavBar={true}>
-            //         <Scene key='auth'>
-            //         <Scene 
-            //         key='login'
-            //         component={Login}
-                    
-            //         hideNavBar={true}
-            //         />
-            //         <Scene 
-            //         key='Main'
-            //         component={Main}
-            //         hideNavBar='true'
-            //         initial
-            //         />
-            //         </Scene>
-            //         <Scene key='Details' >
-            //         <Scene
-            //         key='detail'
-            //         component={Details}
-            //         title='mehmet'
-            //         hideNavBar='false'>
-            //         </Scene>
-            //         </Scene>
-            //     </Scene>
-            // </Router>
-        );
-        
-    }
-}
-
-const AppNavigator = createStackNavigator({
-    Login:{
-     screen: LoginScreen
+import Icon from 'react-native-vector-icons/Ionicons';
+import DrawerButton from './components/drawerbutton';
+  
+const MainStack = createStackNavigator({
+    Login: {
+      screen:LoginScreen,
+      navigationOptions:({navigation}) => ({
+          headerLeft: <DrawerButton navigation= {navigation} />,
+            header: null,
+      })
     },
-    Main:{
-       screen: MainScreen
-      },
-    Details:{
-      screen: DetailScreen
-    },
+    Main: {
+        screen:MainScreen,
+        navigationOptions:({navigation}) => ({
+            headerLeft: <DrawerButton navigation= {navigation} />, })
+      } ,
+    Details: {
+        screen:DetailScreen,
+        navigationOptions:({navigation}) => ({
+            headerLeft: <DrawerButton navigation= {navigation} />,
+            title: 'FastFood'
+         }) 
+      } 
   }, 
   {
     initialRouteName: "Main",
     headerLayoutPreset: "center"
   
-  })
-  const AppContainer = createAppContainer(AppNavigator);
+  });
+
+  const LoginStack = createStackNavigator({
+    Login: {
+        screen:LoginScreen,
+        navigationOptions:{
+        headerLeft: <DrawerButton />  
+        }, 
+  }
+});
+
+  const Drawer = createDrawerNavigator({
+    Main: {
+        screen: MainStack,
+        navigationOptions:{
+            drawerLabel: 'Ana Sayfa',
+            drawerIcon: ({tintColor}) => (
+                <Icon 
+                name="ios-home"
+                size={22}
+                color= {tintColor}
+                />
+            )
+        }
+    },
+    Details: {
+        screen: MainStack,
+        navigationOptions:{
+            drawerLabel: 'Detay Sayfası',
+            drawerIcon: ({tintColor}) => (
+                <Icon 
+                name="ios-home"
+                size={22}
+                color= {tintColor}
+                />
+            )
+        }
+    },
+    Login:{
+        screen: LoginStack,
+        navigationOptions:{
+            drawerLabel: 'Çıkış Yap',
+            drawerIcon: ({tintColor}) => (
+                <Icon 
+                name="ios-log-out"
+                size={22}
+                color= {tintColor}
+                />
+            ),
+        }
+    }, 
+  }, {
+drawerPosition: 'left',
+drawerWidth:220,
+contentOptions: {
+    activeTintColor: '#fff',
+    inactiveTintColor: '#444444',
+    activeBackgroundColor: '#444444',
+    inactiveBackgroundColor: '#fff',
+}
+  });
+
+
+  export default createAppContainer(Drawer)

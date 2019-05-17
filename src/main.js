@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { View, StyleSheet, Image,TouchableOpacity} from 'react-native';
 import { Header } from './components/headers';
 import { Card } from './card';
-
+import Icon from 'react-native-vector-icons/Ionicons';
 
 
 class Main extends Component {
@@ -18,10 +18,11 @@ class Main extends Component {
       style={{ paddingVertical: 10, paddingHorizontal: 10,}} 
       onPress={() => alert('Sepetiniz boş.')}
       >
-      <Image 
-      style={{width:30, height:30, marginVertical: 10,}}
-      source={require('./order-icon.png')}
-      />
+      <Icon 
+          name="ios-cart"
+          size={30}
+          color="white"
+          />
       </TouchableOpacity>
     ),
   };

@@ -9,22 +9,20 @@ class Login extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.headBackground} />
-        <KeyboardAvoidingView>
-          <ScrollView>
+        
           <Text style={styles.logo}>Elexus</Text>
           <Text style={styles.logoDescription}>Hotel</Text>
-          
+           <ScrollView><KeyboardAvoidingView> 
           <View style={styles.loginArea} >
             <Text style={styles.loginAreaTitle}>Giriş Yap</Text>
             <Text style={styles.loginAreaDescription}> Otelimize hoşgeldiniz.Misafir üyeliğiniz yoksa kaydolunuz.</Text>
             <LoginForm />
           </View>
-        </ScrollView>
+        </KeyboardAvoidingView></ScrollView>
         <View style={styles.signUpArea}> 
           <Text style={styles.signupDescription}>Hesabınız yok mu?</Text>
           <TouchableOpacity><Text styles={styles.signUpText}>Kaydol</Text></TouchableOpacity>
         </View>
-        </KeyboardAvoidingView>
       </View>
     );
   }
@@ -34,7 +32,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F5FCFF',
-    paddingVertical: 80
+    paddingVertical: 10
   },
   headBackground: {
     position: 'absolute',
@@ -83,6 +81,7 @@ const styles = StyleSheet.create({
   },
   signUpArea:{
     alignItems:'center',
+    paddingVertical: 10
   },
   signupDescription:{
     color:'#999',
