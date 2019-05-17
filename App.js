@@ -1,23 +1,23 @@
 import React, {Component} from 'react';
 import { View, StyleSheet, } from 'react-native';
-import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import { reducers } from './src/reducers';
 import Root from './src/Root';
-
+import { createStackNavigator, createAppContainer } from 'react-navigation';
+import LoginScreen from './src/pages/login/login';
+import MainScreen from './src/main';
+import DetailScreen from './src/details';
 
 export default class App extends Component {
 
   render() {
     return (
-      <Provider store={createStore(reducers)}>
-      <View style={styles.container}>
-        <Root />
-      </View>
-      </Provider>
+      <Root />
+      // <View style={styles.container}>
+      //    <Root /> 
+      // </View>
     );
   }
 }
+
 
 const styles = StyleSheet.create({
   container:{

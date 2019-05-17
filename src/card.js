@@ -175,10 +175,4 @@ const styles = StyleSheet.create({
 })
 
 
-const mapStateToProps = state => {
-  return{
-    child: state.child
-  } 
-}
-
-export default connect(mapStateToProps) (Card);
+export {Card};

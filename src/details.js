@@ -4,8 +4,7 @@ import { Actions } from 'react-native-router-flux';
 import { Loading } from './components/loading';
 
 
-class Main extends Component {
-
+class Details extends Component {
     constructor() {
         super();
         this.state = {
@@ -90,5 +89,4 @@ const styles = StyleSheet.create({
   },
 })
 
-
-export default Main;
+export default Details;
